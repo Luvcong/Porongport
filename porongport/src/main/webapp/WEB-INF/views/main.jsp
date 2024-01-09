@@ -57,7 +57,7 @@
 	                 <button type="submit" id="login_btn">login</button>
 	             </form>
 	         </div>
-	         <a href="${ pageContext.request.contextPath }/findPwd">비밀번호 찾기</a>
+	         <!-- <a href="${ pageContext.request.contextPath }/findPwd">비밀번호 찾기</a>  -->
 	     </div>
 	 </div>
 	 
