@@ -56,7 +56,7 @@
 		                	<img src="resources/upProfiles/${ profile.changeFileName }" alt="입사자 사진" />
                 		</c:otherwise>
                 	</c:choose>
-                    <span>${ sessionScope.loginUser.empName }</span>
+                    <span>${ sessionScope.loginUser.empName } ${ sessionScope.loginUser.jobName}</span>
                 </div>
                 <div class="icon" onclick="logout();"><i class="fa-solid fa-right-from-bracket"></i></div>
             </div>
