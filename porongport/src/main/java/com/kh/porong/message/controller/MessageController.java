@@ -65,11 +65,10 @@ public class MessageController implements fileHandler {
 	
 	/**
 	 * 메시지 작성하기
-	 * @param m
-	 * @param upfile
-	 * @param session
-	 * @param model
-	 * @return
+	 * @param m : 메시지 객체
+	 * @param upfile  : 메시지 작성시 첨부한 파일 객체
+	 * @param session : 로그인한 회원의 정보
+	 * @return 메시지 성공 여부 반환
 	 * @author JH
 	 * @Date : 2023. 11. 23
 	 */
@@ -77,11 +76,6 @@ public class MessageController implements fileHandler {
 	public String insertMessage(Message m,
 								MultipartFile upfile,
 								HttpSession session) {
-		
-//		System.out.println(m);
-//		System.out.println(upfile);
-//		System.out.println(upfile.getOriginalFilename());
-		// m.setSendUser(loginUser.getEmpNo());
 		
 		if(!upfile.getOriginalFilename().equals("")) {
 			m.setOriginFileName(upfile.getOriginalFilename());
@@ -95,9 +89,6 @@ public class MessageController implements fileHandler {
 		}
 		return "redirect:receivedMessage";
 	}	// insertMessage
-	
-	
-	
 	
 	
 	// ==================================================================================
