@@ -27,8 +27,8 @@
 	     <script>
 	         window.onload = () => {
 	             let now = new Date();
-	             var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate()
-	                       + ' ' + now.getHours() + ':' + now.getMinutes().toString().padStart(2, '0');
+	             var today = now.getFullYear() + '-' + (now.getMonth().toString().padStart(1, '0') + 1) + '-' + now.getDate()
+	                       + ' ' + now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0');
 	
 	             document.querySelector('#today').innerText = today;
 	         }
