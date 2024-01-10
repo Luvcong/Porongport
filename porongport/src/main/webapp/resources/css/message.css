@@ -63,6 +63,13 @@ input[readonly] {
     color: white;
 }
 
+table td:nth-child(6){
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	max-width:150px;
+}
+
 #pagingArea{
 	margin-top: 100px;
 }
