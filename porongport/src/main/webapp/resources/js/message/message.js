@@ -121,7 +121,33 @@
 		function messageForm(){
 			$('#messageForm').modal('show');
 		}	// messageForm
+			
+		// ------------------------------------------------------------------
+		// 메시지 글자 수 Byte 체크
+		// ------------------------------------------------------------------
+		function checkedByte(obj){
+			const limitByte = 1000;
+			let totalByte = 0;
+			let message = $(obj).val();
 		
+			for(let i = 0; i < message.length; i++){
+				var countByte = message.charCodeAt(i);
+				if(countByte > 128){
+					totalByte += 3;
+				} else {
+					totalByte++;
+				}
+				
+				if(totalByte > limitByte){
+					Swal.fire('실패', '글자 수가 초과되었습니다', 'warning');
+					message.value = message.vaule.substr(0, 1000);
+				}
+			}
+			
+			let count = document.getElementById('writeCnt');
+			count.innerHTML = totalByte;
+			// $('#count').text(totalByte);
+		}	// checkedByte
 		 
 		// ------------------------------------------------------------------
 		// 체크박스 선택 / 해제 기능

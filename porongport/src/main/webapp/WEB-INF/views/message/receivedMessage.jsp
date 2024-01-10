@@ -15,7 +15,7 @@
     <!-- sweetalert2 -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- 메시지 관련 js -->
-	<!-- <script type="text/javascript" src="resources/js/message/message.js"></script>  -->
+	<script type="text/javascript" src="resources/js/message/message.js"></script> 
 </head>
 <body>
 
@@ -148,7 +148,7 @@
 			                	</tr>
 			                	<tr>
 			                		<th>Message</th>
-			                		<td><textarea id="messageTextarea" class="form-control form-control-sm" rows="3" name="messageContent" placeholder="메시지 내용을 입력하세요"></textarea></td>
+			                		<td><textarea id="messageTextarea" class="form-control form-control-sm" rows="3" name="messageContent" placeholder="메시지 내용을 입력하세요" onkeyup="checkedByte(this)"></textarea></td>
 			                	</tr>
 			                	<tr>
 			                		<th>From</th>
@@ -242,7 +242,7 @@
 		</script>
 	</c:if>
 	
-	<script>
+<!-- 	<script>
 	// ------------------------------------------------------------------
 	// 메시지 읽은 경우 tr 색상 변경
 	// ------------------------------------------------------------------
@@ -365,7 +365,33 @@
 		$('#messageForm').modal('show');
 	}	// messageForm
 	
-	 
+	// ------------------------------------------------------------------
+	// 메시지 글자 수 Byte 체크
+	// ------------------------------------------------------------------
+	function checkedByte(obj){
+		const limitByte = 1000;
+		let totalByte = 0;
+		let message = $(obj).val();
+	
+		for(let i = 0; i < message.length; i++){
+			var countByte = message.charCodeAt(i);
+			if(countByte > 128){
+				totalByte += 3;
+			} else {
+				totalByte++;
+			}
+			
+			if(totalByte > limitByte){
+				Swal.fire('실패', '글자 수가 초과되었습니다', 'warning');
+				message.value = message.vaule.substr(0, 1000);
+			}
+		}
+		
+		let count = document.getElementById('writeCnt');
+		count.innerHTML = totalByte;
+		// $('#count').text(totalByte);
+	}	// checkedByte
+	
 	// ------------------------------------------------------------------
 	// 체크박스 선택 / 해제 기능
 	// ------------------------------------------------------------------
@@ -890,7 +916,7 @@
 		});		// confrim	 
 	}	// permanentDelete
 	</script>
-		
+ -->		
  	<c:choose>
  		<c:when test="${ not empty successMsg }">
  			<script>
