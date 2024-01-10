@@ -147,7 +147,7 @@
 			                	</tr>
 			                	<tr>
 			                		<th>Message</th>
-			                		<td><textarea id="messageTextarea" class="form-control form-control-sm" rows="3" name="messageContent" placeholder="메시지 내용을 입력하세요"></textarea></td>
+			                		<td><textarea id="messageTextarea" class="form-control form-control-sm" rows="3" name="messageContent" placeholder="메시지 내용을 입력하세요" onkeyup="checkedByte(this)"></textarea></td>
 			                	</tr>
 			                	<tr>
 			                		<th>From</th>
