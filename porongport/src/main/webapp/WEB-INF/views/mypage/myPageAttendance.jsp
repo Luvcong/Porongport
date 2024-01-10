@@ -105,7 +105,7 @@
 	  	let now = new Date();
 	  	var mi = now.getMinutes().toString().padStart(2, '0');
  		var cTime = now.getHours() + ':' + mi;
-  		var today = now.getFullYear() + '-' + (now.getMonth() + 1) + '-' + now.getDate().toString().padStart(2, '0');
+  		var today = now.getFullYear() + '-' + (now.getMonth() + 1).toString().padStart(2, '0') + '-' + now.getDate().toString().padStart(2, '0');
 	 		
  		window.onload = () => {
 			 			
