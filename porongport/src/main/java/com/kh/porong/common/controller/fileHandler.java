@@ -13,11 +13,6 @@ public interface fileHandler {
 	
 	public default String saveFile(MultipartFile upfile, HttpSession session, String path) {
 		
-		// System.out.println(path);
-//		if(upfile.getOriginalFilename().length() == 0) {
-//			return "";
-//		}
-		
 		String originName = upfile.getOriginalFilename();
 		// System.out.println(originName);
 		
@@ -30,18 +25,12 @@ public interface fileHandler {
 		String ext = originName.substring(originName.lastIndexOf("."));
 		
 		String changeName = currentTime + ranNum + ext;
-		// System.out.println(changeName);
 		
 		// Path savePaths= Paths.get(session.getServletContext().getRealPath("/resources"), "uploadFiles", path, changeName);
 		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
 		
-		// 빌더 써서 합치기?
-		// System.out.println("savePaths : " + savePaths);
-		// System.out.println("savePath : " + savePath);
 		
 		try {
-			// "resources/uploadFiles/" + changeName
-			// upfile.transferTo(new File(savePath + changeName));
 			upfile.transferTo(new File(savePath + path + changeName));
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
@@ -49,10 +38,7 @@ public interface fileHandler {
 			e.printStackTrace();
 		}
 		
-		// return savePaths.toString();
-		// return "resources/uploadFiles/" + changeName;
 		return "resources/uploadFiles/" + path + changeName;
 	}
-
 	
 }	// end class

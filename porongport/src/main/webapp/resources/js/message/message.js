@@ -387,37 +387,31 @@
 		// ------------------------------------------------------------------
 		// 메시지 북마크 ajax
 		// ------------------------------------------------------------------
-		function bookmark_msg(){
-			event.stopPropagation();
-			
-			let target = event.currentTarget;
-			let message_no = target.getAttribute('data-no');
-			let bookmark_YN = target.classList.contains('fa-solid');	// true or false
-			console.log(bookmark_YN);
-						
-			$.ajax({
- 				url : 'bookmarkMsg',
+	function bookmark_msg(){
+		event.stopPropagation();
+		
+		let target = event.currentTarget;
+		let message_no = target.getAttribute('data-no');
+		let bookmark_yn = target.classList.contains('fa-solid');
+					
+		$.ajax({
+				url  : 'bookmarkMsg',
 				type : 'get',
-				data : { messageNo : message_no,
-						bookmarkYN : bookmark_YN
-						 },
+				data : {
+					message_no : message_no,
+					bookmark_yn : bookmark_yn
+		 		},
 				success : function(result){
-					
-					if(result){
-						target.classList.remove('fa-regular');	// 빈 별
-						target.classList.add('fa-solid');		// 색칠 별
-					} else {
-						target.classList.remove('fa-solid');
-						target.classList.add('fa-regular');
-					}
-					
-					// console.log(target);	
-				},	// success
-				error : function(result){
-					console.log('통신오류! 실패');
-				},	// error
-			});	// ajax
-		}	// bookmark_msg
+				
+				target.classList.remove(result ? 'fa-regular' : 'fa-solid');
+				target.classList.add(result ? 'fa-solid' : 'fa-regular');
+				
+			},	// success
+			error : function(result){
+				console.log('통신오류! 실패');
+			},	// error
+		});	// ajax
+	}	// bookmark_msg
 		
 		
 		// ------------------------------------------------------------------
