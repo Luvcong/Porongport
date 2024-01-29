@@ -99,7 +99,7 @@
  		// 공지사항 게시글 작성
  		// ------------------------------------------------------------------ 
  	   function insertNotice() {
- 		   let content = document.getElementById('editor'); 
+ 		   const content = document.getElementById('editor'); 
  		   content.value = editor.getData();
  		   console.log(content.value);
  		   
