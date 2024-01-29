@@ -22,11 +22,20 @@ http://www.peachcong.store/<br>
 <br>
 
 # ⚙️ 개발 환경
+| Title | Content |
+| :--- | :--- |
+| Language | Java  / JSP /  HTML5  /  CSS3  /  JavaScript  /  SQL(Oracle) |
+| Database | Oracle 11g XE |
+| WAS | Apache Tomcat 8.5 |
+| Collaboration & Tools | GitHub / Notion |
+| Cloud | [AWS] Amazon Linux 2023  /  [NAVER CLOUD] CentOS 7.8 |
+| 프레임워크 | Spring 5.3.22  /  MyBatis3 |
+| 라이브러리 | jQuery  /  JSTL  /  CKEditor5  /  Sweetalert2  /  Bootstrap4  /  Select2 |
 
 <br>
 
 # 💡 주요 기능
-- 로그인 / 로그아웃 / 사원등
+- 로그인 / 로그아웃 / 사원등록
 - 사용자 근태관리(출/퇴근)
 - 전자결재 기능
 - 메시지 기능
