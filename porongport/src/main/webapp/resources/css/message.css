@@ -70,6 +70,13 @@ table td:nth-child(6){
 	max-width:150px;
 }
 
+.tb-delete-box td:nth-child(7){
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	max-width:150px;
+}
+
 #pagingArea{
 	margin-top: 100px;
 }

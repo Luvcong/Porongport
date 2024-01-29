@@ -64,7 +64,7 @@
 			</div>
 		
 			<div class="tableBody">
-				<table class="tb-message table table-sm table-hover shadow rounded-3">
+				<table class="tb-message tb-delete-box table table-sm table-hover shadow rounded-3">
 				<thead>
 					<tr class="tb-title-tr">
 						<th><input type="checkbox" onclick="checkAll()"></th>
