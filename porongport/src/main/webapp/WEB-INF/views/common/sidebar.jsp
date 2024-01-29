@@ -157,6 +157,8 @@
 			        <div class="sub-item" data-url='document3'>전체문서함</div>
 				</div>
 				<div class="sub-menu d-none" data-group='receivedMessage'>
+			        <div class="sub-item d-none" data-url='detailMessage'></div>
+			        <div class="sub-item d-none" data-url='searchReceivedMessage'></div>
 					<div class="sub-item sub-title" data-url='receivedMessage'><i class="fa-solid fa-envelope"></i> 메시지함</div>
 					<div class="sub-item not-hover" onclick='messageForm()'>
 						<button class='btn btn-sm btn-primary msg-write'>메시지 작성</button>
@@ -168,6 +170,9 @@
 			        <div class="sub-item" data-url='deleteMessageBox'>휴지통</div>
 				</div>
 				<div class="sub-menu d-none" data-group='noticeList'>
+			        <div class="sub-item d-none" data-url='noticeWriteForm'></div>
+			        <div class="sub-item d-none" data-url='detailNotice'></div>
+			        <div class="sub-item d-none" data-url='updateNoticeForm'></div>
 					<div class="sub-item sub-title" data-url='notice'><i class="fa-solid fa-pen-to-square"></i> 게시판</div>
 			        <div class="sub-item" data-url='noticeList'>공지사항 게시판</div>
 			        <div class="sub-item" data-url='board'>자유 게시판</div>
@@ -300,6 +305,7 @@
 		// 3) item 클래스에 onclick 이벤트 등록
 		//    현재 url과 일치하는 item에 active 클래스를 추가
     	let items = document.querySelectorAll('.item');
+		console.log(items);
 		
     	for(let item of items) {
     		let data_group = item.getAttribute('data-group');
