@@ -37,16 +37,19 @@
 		    </div>
 		    <div>
 		    	<c:if test="${ list.noticeWriter eq loginUser.empNo }">
-					<button class="btn btn-sm btn-danger" onclick="postFormSubmit(0)">수정</button>
-					<button class="btn btn-sm btn-danger" onclick="postFormSubmit(1)">삭제</button>
+					<button class="btn btn-sm btn-danger" onclick="postFormSubmit('update')">수정</button>
+					<button class="btn btn-sm btn-danger" onclick="postFormSubmit('delete')">삭제</button>
 				</c:if>
 		    </div>
 				
 
       	</div>	<!-- toolbar  -->
       	
+      	<!-- 게시글 수정 또는 삭제를 위한 폼 -->
 		<form action="" method="post" id="postForm">		
-				<input type="hidden" name="nno" value="${ list.noticeNo }">
+			 <!-- 게시글 번호를 전달하기 위한 hidden input -->
+			<input type="hidden" name="nno" value="${ list.noticeNo }">
+			<!-- 첨부 파일 정보를 전달하기 위한 hidden input들 -->
 			<c:forEach var="at" items="${ attachList }">
 				<input type="hidden" name="changeFileName" value="${ at.filePath }/${ at.changeFileName }">
 			</c:forEach>
@@ -185,7 +188,14 @@
 			},
 			success : function(result){
 				
-				if(result){
+				target.classList.remove(result ? 'fa-regular' : 'fa-solid');
+				target.classList.add(result ? 'fa-solid' : 'fa-regular');
+				
+				result ? total++ : total--;
+				like_count.textContent = total; 
+				
+				
+/*  				if(result){
 					target.classList.remove('fa-regular');
 					target.classList.add('fa-solid');
 					total++;
@@ -195,7 +205,7 @@
 					target.classList.add('fa-regular');
 					total--;
 					like_count.textContent = total;
-				}
+				}  */
 				
 			},	// success
 			error : function(result){
@@ -208,13 +218,24 @@
 	// ------------------------------------------------------------------
 	// 공지사항 게시글 수정 & 삭제
 	// ------------------------------------------------------------------
-	function postFormSubmit(num){
+/* 	function postFormSubmit(num){
 		if(num == 0){	// 수정하기 클릭시
 			$('#postForm').attr('action', 'updateNoticeForm').submit();
 		} else {		// 삭제하기 클릭시
 			$('#postForm').attr('action', 'deleteNotice').submit();
 	  }
-	}	// postFormSubmit
+	}	// postFormSubmit */
+	
+	function postFormSubmit(actionType) {
+	    const postForm = document.getElementById('postForm');
+
+	    if (actionType === 'update') { // 수정하기 클릭시
+	        postForm.action = 'updateNoticeForm';
+	    } else if(actionType === 'delete') { // 삭제하기 클릭시
+	        postForm.action = 'deleteNotice';
+	    }
+	        postForm.submit();
+	}
 	
 	
 	// ------------------------------------------------------------------
@@ -232,10 +253,11 @@
 						replyContent : $('#replyContent').val(),
 						replyWriter : '${ sessionScope.loginUser.empNo }'
 					},
-				success : function(result){	// result => {
+				success : result =>{	// result => {
 					
 					if(result === 'success'){
-						$('#replyContent').val('');
+						document.getElementById('replyContent').value = '';
+						// $('#replyContent').val('');
 						selectReplyList();
 					} 
 				},	// success
@@ -266,8 +288,8 @@
 				let value = '';
 				for(let list of replyList) {
 					value += '<tr style="line-height:40px">'
-						   + '<td style="width:75px;">' + '<img src="resources/images/20231106.png" alt="프로필사진" class="profile-notice">' + '</td>'
-						   + '<td style="width:250px;">' + list.empList[0].empName + list.empList[0].jobName + ' / ' + list.empList[0].deptName + '</td>'
+						   + '<td style="width:75px;">' + '<img src="resources/images/profile.png" alt="프로필사진" class="profile-notice">' + '</td>'
+						   + '<td style="width:250px;">' + list.empList[0].empName + ' ' +  list.empList[0].jobName + ' / ' + list.empList[0].deptName + '</td>'
 						   + '<td>' + list.replyContent + '</td>'
 						   + '<td style="width:170px;">' + list.replyDate + '</td>';
 						   if(list.replyWriter == ${loginUser.empNo} ){
