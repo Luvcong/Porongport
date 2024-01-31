@@ -2,6 +2,7 @@ package com.kh.porong.common.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -26,12 +27,15 @@ public interface fileHandler {
 		
 		String changeName = currentTime + ranNum + ext;
 		
-		// Path savePaths= Paths.get(session.getServletContext().getRealPath("/resources"), "uploadFiles", path, changeName);
+//		Path savePaths= Paths.get(session.getServletContext().getRealPath("/resources"), "uploadFiles", path, changeName);	
 		String savePath = session.getServletContext().getRealPath("/resources/uploadFiles/");
+//		System.out.println(savePaths);
+		System.out.println(savePath);
 		
 		
 		try {
 			upfile.transferTo(new File(savePath + path + changeName));
+//			 upfile.transferTo(new File(savePaths.toString()));
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
