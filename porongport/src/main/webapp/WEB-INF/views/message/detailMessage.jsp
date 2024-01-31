@@ -15,6 +15,8 @@
     
     <!-- sweetalert2 -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<!-- 메시지 관련 js -->
+	<script type="text/javascript" src="resources/js/message/message.js"></script> 
 </head>
 <body>
 
@@ -34,7 +36,6 @@
 			
 			<div class="r-messageBtn">
 				<button class="btn btn-sm btn-outline-primary" onclick="messageForm()">답장</button>
-				<button class="btn btn-sm btn-outline-primary" onclick="storageMessage()">보관</button>
 			</div>
       	</div>	<!-- toolbar  -->
       	
@@ -47,7 +48,7 @@
       			<tr class='tr-sender'>
       				<th>보낸사람</th>
       				<td>
-      					<img id="profile-message" src="resources/images/20231106.png"  alt="프로필사진">
+      					<img id="profile-message" src="resources/images/default_profile.png"  alt="프로필사진">
       					<input class="form-control form-control-sm detail-input" readonly value="${ list.empName } ${ list.jobName } / ${ list.deptName }">
       				</td>
       			</tr>
@@ -137,10 +138,14 @@
 		  </div> 
 		  
 		  <script>
-		  $("#file").on('change',function(){
+/* 		  $("#file").on('change',function(){
 			  var fileName = $("#file").val();
 			  $(".upload-name").val(fileName);
-		  });
+		  }); */
+			document.getElementById('file').addEventListener('change', () => {
+			    let fileName = document.getElementById('file').value;
+			    document.querySelector('.upload-name').value = fileName;
+			});
 		  </script>
 	
 	<script>
@@ -154,26 +159,6 @@
 		   dropdownCssClass: "text-sm"
 		});
 	})
-	
-	
-	// ------------------------------------------------------------------
-	// 뒤로가기 버튼 클릭 (이전페이지 이동)
-	// ------------------------------------------------------------------
-	function historyBack(){
-		document.getElementById("backIcon").addEventListener("click", () => {
-			  location.href = document.referrer;
-		});
-	}	// historyBack
-	
-	
-	// ------------------------------------------------------------------
-	// 메시지 작성 modal창 실행
-	// ------------------------------------------------------------------
-	function messageForm(){
-		$('#messageForm').modal('show');
-	}	// messageForm
-	
-	
 	</script>
 </body>
 </html>

@@ -181,10 +181,14 @@
 		  </div> 
 		  
 		  <script>
-		  $("#file").on('change',function(){
+/* 		  $("#file").on('change',function(){
 			  var fileName = $("#file").val();
 			  $(".upload-name").val(fileName);
-		  });
+		  }); */
+		  	document.getElementById('file').addEventListener('change', () => {
+			    let fileName = document.getElementById('file').value;
+			    document.querySelector('.upload-name').value = fileName;
+			});
 		  </script>
 			
 			<div id="pagingArea">

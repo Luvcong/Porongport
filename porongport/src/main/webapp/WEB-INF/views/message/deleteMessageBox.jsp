@@ -227,8 +227,6 @@
 	</div>	<!-- pp-content  -->
 	
 	
-	
-	
 	<c:if test="${ not empty condition }">
 		<script>
 		$(() => {
