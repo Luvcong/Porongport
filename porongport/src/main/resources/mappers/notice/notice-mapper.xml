@@ -124,6 +124,7 @@
 		<result column="EMP_NAME" property="empName" />
 		<result column="DEPT_NAME" property="deptName" />
 		<result column="JOB_NAME" property="jobName" />
+		<result column="EMP_PHONE" property="empPhone" />
 	</resultMap>
 	
 	
@@ -346,15 +347,13 @@
 				(
 				NOTICE_LIKE_NO,
 				NOTICE_NO,
-				EMP_NO,
-				NOTICE_LIKE_DATE
+				EMP_NO
 				)
 				VALUES
 				(
 				SEQ_NOTICE_LIKE.NEXTVAL,
 				#{ noticeNo },
-				#{ empNo },
-				SYSDATE
+				#{ empNo }
 				)	
 	</insert>
 	

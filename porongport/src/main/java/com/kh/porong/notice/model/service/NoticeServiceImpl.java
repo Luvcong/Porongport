@@ -86,7 +86,10 @@ public class NoticeServiceImpl implements NoticeService {
 		
 	// 1) 공지사항 게시글 상세보기
 	@Override
-	public List<Notice> detailNotice(Map<String, Integer> map) {
+//	public List<Notice> detailNotice(Map<String, Integer> map) {
+//		return noticeDao.detailNotice(sqlSession, map);
+//	}	// detailNotice
+	public Notice detailNotice(Map<String, Integer> map) {
 		return noticeDao.detailNotice(sqlSession, map);
 	}	// detailNotice
 	

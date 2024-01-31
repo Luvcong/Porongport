@@ -60,7 +60,8 @@
 }
 
 .ck-editor__editable {
-	height: 400px; 
+	height: 400px;
+	line-height: 5px;
 }
 .ck-content {
 	font-size: 14px;
@@ -138,4 +139,9 @@
 
 .upload-name {
 	margin-left: 4px ;
+}
+
+#btnDiv{
+    margin-left: 500px;
+    margin-top: 50px;
 }

@@ -110,8 +110,11 @@ public class NoticeDao {
 	 * @author JH
 	 * @Date : 2023. 11. 27
 	 */
-	public List<Notice> detailNotice(SqlSessionTemplate sqlSession, Map<String, Integer> map) {
-		return sqlSession.selectList("noticeMapper.detailNotice", map);
+//	public List<Notice> detailNotice(SqlSessionTemplate sqlSession, Map<String, Integer> map) {
+//		return sqlSession.selectList("noticeMapper.detailNotice", map);
+//	}	// detailNotice
+	public Notice detailNotice(SqlSessionTemplate sqlSession, Map<String, Integer> map) {
+		return sqlSession.selectOne("noticeMapper.detailNotice", map);
 	}	// detailNotice
 	
 	/**

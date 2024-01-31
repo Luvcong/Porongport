@@ -103,6 +103,46 @@ public class NoticeController implements fileHandler {
 	public String noticeWriteForm() {
 		return "notice/noticeWriteForm";
 	}	// noticeWrite
+	
+	// =====================================================================================================
+	
+//	/**
+//	 * 공지사항 작성 (empAdmin == 'A' 인 사원만 작성 가능)
+//	 * @return 공지사항 작성 성공 여부 반환
+//	 * @author JH
+//	 * @Date : 2023. 11. 27
+//	 */
+//	@PostMapping("insertNotice")
+//	public String insertNotice(@SessionAttribute(name= "loginUser", required= false) Employee loginUser,
+//								@RequestParam("multiFile") List<MultipartFile> multiFileList,
+//								Notice n, HttpServletRequest request) {
+//
+//		// System.out.println("multiFileList : " + multiFileList);
+//		// System.out.println("fileContent : " + n);
+//		int empNo = loginUser.getEmpNo();
+//		n.setNoticeWriter(empNo);
+//
+//		if(noticeService.insertNotice(n) > 0){
+//			request.getSession().setAttribute("successMsg", "공지사항 작성에 성공했습니다!");
+//			for(MultipartFile mulFile : multiFileList) {
+//				NoticeAttachment attach = new NoticeAttachment();
+//				Path fullPath = Paths.get(saveFile(mulFile, request.getSession(), "notice"));
+//
+//				attach.setOriginFileName(mulFile.getOriginalFilename());
+//				attach.setChangeFileName(fullPath.getFileName().toString());
+//				attach.setFilePath(fullPath.getParent().toString());
+//				attach.setNoticeNo(n.getNoticeNo());
+//
+//				noticeService.insertAttachment(attach);
+//			}
+//		} else {
+//			request.getSession().setAttribute("failMsg", "공지사항 작성에 실패했습니다");
+//		}
+//		return "notice/noticeList";
+//		// return "notice/detailNotice?nno=" + notice_no;
+//	}
+	
+	// =====================================================================================================
 
 	
 	/**
@@ -148,7 +188,7 @@ public class NoticeController implements fileHandler {
 			attach.setChangeFileName(fullPath.getFileName().toString());	// 수정파일명 전달
 			attach.setFilePath(fullPath.getParent().toString());			// 파일경로 전달
 			
-			System.out.println(attach);
+//			System.out.println(attach);
 			noticeService.insertAttachment(attach);							// 첨부파일 추가
 				
 		}
@@ -191,14 +231,16 @@ public class NoticeController implements fileHandler {
 			return "notice/detailNotice";
 		}
 		
-		List<Notice> list = noticeService.detailNotice(map);
+		// List<Notice> list = noticeService.detailNotice(map);
+		Notice notice = noticeService.detailNotice(map);
 		List<NoticeAttachment> attachList = noticeService.selectAttachment(nno);
-		// List<NoticeAttachment> attachList = new ArrayList<NoticeAttachment>();
+//		 List<NoticeAttachment> attachList = new ArrayList<NoticeAttachment>();
 		
-		// System.out.println("list.get(0) : " + list.get(0));
+//		System.out.println(list);
+//		 System.out.println("list.get(0) : " + list.get(0));
 		
+//		 NoticeAttachment at = new NoticeAttachment();
 //		for(Notice notice : list) {
-//			NoticeAttachment at = new NoticeAttachment();
 //			at.setNoticeNo(notice.getNoticeNo());
 //			at.setOriginFileName(notice.getOriginFileName());
 //			at.setChangeFileName(notice.getChangeFileName());
@@ -208,10 +250,11 @@ public class NoticeController implements fileHandler {
 //		}
 		
 		// System.out.println("attachList:" + attachList);
-		// int likeList = noticeService.checkNoticeLike(map);
+//		 int likeList = noticeService.checkNoticeLike(map);
 		// System.out.println(likeList);
 		
-		model.addAttribute("list", list.get(0));
+//		model.addAttribute("list", list.get(0));
+		model.addAttribute("list", notice);
 		model.addAttribute("attachList", attachList);
 		model.addAttribute("likeList", noticeService.checkNoticeLike(map));
 		
@@ -291,7 +334,8 @@ public class NoticeController implements fileHandler {
 		map.put("noticeWriter", empNo);
 		map.put("noticeNo", nno);
 		
-		List<Notice> list = noticeService.detailNotice(map);
+//		List<Notice> list = noticeService.detailNotice(map);
+		Notice notice = noticeService.detailNotice(map);
 		List<NoticeAttachment> attachList = noticeService.selectAttachment(nno);
 		
 //		for(Notice notice : list) {
@@ -304,7 +348,8 @@ public class NoticeController implements fileHandler {
 //			attachList.add(at);
 //		}
 		
-		model.addAttribute("list", list.get(0));
+//		model.addAttribute("list", list.get(0));
+		model.addAttribute("list", notice);
 		model.addAttribute("attachList", attachList);
 		// System.out.println(list.get(0));
 		// System.out.println(attachList);
@@ -332,7 +377,7 @@ public class NoticeController implements fileHandler {
 							   HttpServletRequest request) {
 		
 		n.setNoticeWriter(loginUser.getEmpNo());
-		System.out.println("Notice : " + n);
+//		System.out.println("Notice : " + n);
 		
 		// 공지사항 수정에 성공한 경우에만 첨부파일 작성 코드 수행
 		if((noticeService.updateNotice(n) == 0)) {

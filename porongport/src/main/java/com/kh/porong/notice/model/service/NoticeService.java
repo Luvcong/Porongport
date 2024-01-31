@@ -44,7 +44,8 @@ public interface NoticeService {
 	// ==================================================================================
 	
 	// 1) 공지사항 게시글 상세보기
-	List<Notice> detailNotice(Map<String, Integer> map);
+	// List<Notice> detailNotice(Map<String, Integer> map);
+	Notice detailNotice(Map<String, Integer> map);
 	
 	// 2) 공지사항 첨부파일 상세조회
 	List<NoticeAttachment> selectAttachment(int noticeNo);
